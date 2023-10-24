@@ -11,6 +11,19 @@
     align-items: center;
 }
 
+img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    aspect-ratio: 21/9;
+}
+
+.card.movie {
+    width: 1200px;
+    height: 500px;
+    position: relative;
+}
+
 .item {
     float: left;
     width: 700px;
@@ -50,9 +63,19 @@
     object-fit: cover;
 }
 
+
 .thumb.active {
     border: 2px solid #ccc;
     opacity: 1;
+}
+
+.details {
+    position: absolute;
+    bottom: 40px;
+    right: 45px;
+    text-align: end;
+    color: white;
+  
 }
 
 .prev, .next {
@@ -63,17 +86,22 @@
     background: #ccc;
     position: absolute;
     left: 50%;
-    transform: translate(-50%);
+    transform: translate(-50%) rotate(-90deg); 
     cursor: pointer;
     z-index: 999;
+    text-align: center;
 }
 
 .next {
     bottom: 0;
 }
 
+.prev {
+    top: 0;
+}
 
-.prev::after {
+
+/* .prev::after {
     content: '';
     width: 10px;
     height: 10px;
@@ -97,4 +125,4 @@
     bottom: 35%;
     left: 50%;
     transform: translate(-50%) rotate(135deg);
-}
+} */
