@@ -30,6 +30,7 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
+            autoScrollId: null,
             currentIndex: 0,
             slides: [
                 {
@@ -60,7 +61,7 @@ createApp({
     methods: {
         nextImage() {
             this.currentIndex++;
-            if (this.currentIndex > this.slides[lenght].image - 1 ) {
+            if (this.currentIndex > this.slides.length - 1 ) {
                 this.currentIndex = 0;
                 
             }
@@ -68,10 +69,32 @@ createApp({
         previousImage() {
             this.currentIndex--;
             if(this.currentIndex < 0) {
-                this.currentIndex = this.slidesImage.lenght - 1
+                this.currentIndex = this.slides.length - 1
             }
 
+        },getCurrentIndex(index){
+            let currentIndex ='';
+            if (this.currentIndex === index) {
+                currentIndex = 'active'
+            }
+            return currentIndex;        
+        },changeImage(index){
+            this.currentIndex = index
         },
+        autoScroll(){
+           // setInterval(this.nextImage(), 3000);
+           this.autoScrollId = setInterval(( ) => {
+              this.nextImage()
+            },3000)
+        },
+        stopAutoScroll() {
+            clearInterval(this.autoScrollId)
+            this.autoScrollId = null
+        }
+
+        
+    },mounted(){
+        this.autoScroll()
     }
 }).mount("#app");
 
